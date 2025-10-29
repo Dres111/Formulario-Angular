@@ -1,0 +1,262 @@
+
+
+<router-outlet></router-outlet>
+<app-component-explicacion></app-component-explicacion>
+
+<h1>Tarjetas y Formulario</h1>
+
+<!-- Tarjetas -->
+<section class="contenedor-tarjetas" style="margin-bottom: 40px;">
+  <div class="tarjeta" *ngFor="let producto of productos">
+    <div class="contenedor-imagen">
+      <img [src]="producto.imagenUrl" alt="Imagen del producto">
+    </div>
+    <div class="contenedor-texto">
+      <h3 class="centrar-texto">{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <p class="centrar-texto">Ver más</p>
+      <p class="centrar-texto negrilla">${{ producto.precio }}</p>
+    </div>
+    <div class="space-bottoms">
+      <button class="color-editar">Editar</button>
+      <button class="color-eliminar">Eliminar</button>
+    </div>
+  </div>
+</section>
+
+<!-- Formulario -->
+<div class="form-wrapper">
+  <form (ngSubmit)="onSubmit()">
+    <h2>Formulario</h2>
+
+    <label for="name">Nombre</label>
+    <input id="name" type="text" [(ngModel)]="formModel.nombre" name="nombre" placeholder="Ingrese el nombre del producto">
+
+    <label for="description">Descripción</label>
+    <textarea id="description" [(ngModel)]="formModel.descripcion" name="descripcion" placeholder="Ingrese una breve descripción"></textarea>
+
+    <label for="category">Categoría</label>
+    <input id="category" type="text" [(ngModel)]="formModel.categoria" name="categoria" placeholder="Ejemplo: Electrónica, Hogar...">
+
+    <label for="imageUrl">Imagen URL</label>
+    <input id="imageUrl" type="text" [(ngModel)]="formModel.imagenUrl" name="imagenUrl" placeholder="https://ejemplo.com/imagen.jpg">
+
+    <div class="row">
+      <div>
+        <label for="startDate">Fecha Inicio</label>
+        <input id="startDate" type="date" [(ngModel)]="formModel.fechaInicio" name="fechaInicio">
+      </div>
+      <div>
+        <label for="endDate">Fecha Fin</label>
+        <input id="endDate" type="date" [(ngModel)]="formModel.fechaFin" name="fechaFin">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="price">Precio</label>
+        <input id="price" type="number" [(ngModel)]="formModel.precio" name="precio" placeholder="0">
+      </div>
+      <div>
+        <label for="units">Unidades</label>
+        <input id="units" type="number" [(ngModel)]="formModel.unidades" name="unidades" placeholder="0">
+      </div>
+    </div>
+
+    <div class="checkbox-group">
+      <input id="available" type="checkbox" [(ngModel)]="formModel.disponible" name="disponible">
+      <label for="available">Disponible</label>
+    </div>
+
+    <button type="submit">Guardar</button>
+  </form>
+</div>
+
+<!-- Estilos -->
+<style>
+  .header {
+    display: flex;
+    width: 100%;
+    height: 80px;
+    background-color: aquamarine;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  h1 {
+    background-color: rgb(245, 5, 5);
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .contenedor-tarjetas {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 20px;
+  }
+
+  .tarjeta {
+    width: 300px;
+    height: 450px;
+    background-color: #e40d0d;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+  }
+
+  .contenedor-imagen {
+    width: 100%;
+    height: 100px;
+  }
+
+  img {
+    width: 100%;
+    height: 150%;
+    padding: auto;
+    border-radius: 15px;
+  }
+
+  p {
+    font-size: 20px;
+    color: white;
+  }
+
+  h3 {
+    font-size: 25px;
+    text-align: center;
+    color: white;
+  }
+
+  .centrar-texto {
+    text-align: center;
+  }
+
+  .negrilla {
+    font-weight: bold;
+  }
+
+  .space-bottoms {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .color-editar {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .color-eliminar {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .form-wrapper {
+    background-color: #1522d4;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    max-width: 670px;
+    margin: auto;
+  }
+
+  form {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
+    background-color: #fd0303;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: white;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  textarea {
+    width: 95%;
+    padding: 10px 12px;
+    border: 3px solid #030303;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: #0078d4;
+    outline: none;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .row > div {
+    flex: 1 1 45%;
+  }
+
+  .checkbox-group {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+  }
+
+  button[type="submit"] {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    background-color: #0d1df8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #005fa3;
+  }
+</style>
